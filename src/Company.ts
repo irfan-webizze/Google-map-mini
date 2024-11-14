@@ -3,16 +3,28 @@ import { faker } from "@faker-js/faker";
 export class Company {
   companyName: string;
   catchPhrase: string;
-  companyLocation: {
-    lat: string;
-    lng: string;
+  location: {
+    lat: number;
+    lng: number;
   };
+  color: string = "red";
   constructor() {
     this.companyName = faker.company.name();
     this.catchPhrase = faker.company.catchPhrase();
-    this.companyLocation = {
-      lat: faker.address.latitude(),
-      lng: faker.address.longitude(),
+    this.location = {
+      lat: parseFloat(faker.address.latitude()),
+      lng: parseFloat(faker.address.longitude()),
     };
+  }
+  contentString() {
+    return `<div>
+    Company Name:
+    <h3>${this.companyName}
+    </h3>
+    <p>Catchphrase:<b>
+     ${this.catchPhrase}
+    </b>
+    </p>
+    </div>`;
   }
 }
